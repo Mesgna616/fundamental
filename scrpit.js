@@ -58,4 +58,3 @@ element_verb.innerText = randomMember(verb);
 noun = ['girl', 'boy', 'woman'];
 let element_noun = document.getElementById('noun');
 element_noun.innerText = randomMember(noun);
-
