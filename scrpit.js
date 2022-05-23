@@ -1,60 +1,23 @@
-var input_value, counting_sheep, counting_other;
-
-function getNumberOrString(value) {
-  // Convert a string value to a number if possible
-  let number_value = Number(value);
-  if (Number.isNaN(number_value)) {
-    return value
-  } else {
-    return number_value
-  }
-}
+var images;
 
 
+images = ['https://flxt.tmsimg.com/assets/p18930951_b_v13_ac.jpg', 'https://www.wikihow.com/images/thumb/0/01/Draw-Snoopy-Step-27.jpg/aid1087964-v4-1200px-Draw-Snoopy-Step-27.jpg', 'https:///wp-content/uploads/2021/11/Snoopy_In_Space_Photo_020201-1014x570.jpg', 'https://www.denofgeek.com/wp-content/uploads/2015/12/peanuts_movie_snoopy_flying_woodstock-1.jpg'];
+let element_image = document.getElementById('image');
+element_image.setAttribute("src", images[0]);
 
-document.getElementById('button').addEventListener('click', (event) => {
-  input_value = getNumberOrString(document.getElementById('text').value);
-  if (input_value != '') {
-    if (input_value == 'sheep') {
-      counting_sheep = (typeof counting_sheep === 'number' ? counting_sheep : 0) + 1;
-      let element_sheep_count = document.getElementById('sheep_count');
-      element_sheep_count.innerText = counting_sheep;
-    }
-    if (input_value != 'sheep') {
-      counting_other = (typeof counting_other === 'number' ? counting_other : 0) + 1;
-      let element_other_count = document.getElementById('other_count');
-      element_other_count.innerText = counting_other;
-    }
-  }
+
+document.getElementById('next').addEventListener('click', (event) => {
+  images.push(images[0]);
+  images.shift();
+  let element_image2 = document.getElementById('image');
+  element_image2.setAttribute("src", images[0]);
 
 });
 
+document.getElementById('previous').addEventListener('click', (event) => {
+  images.unshift(images.slice(-1)[0]);
+  images.pop();
+  let element_image3 = document.getElementById('image');
+  element_image3.setAttribute("src", images[0]);
 
-var animal, adejctive, verb, noun;
-
-function randomInt(n) {
-  // Return a random number from in [0, n[
-  return Math.floor(Math.random()*n);
-}
-
-function randomMember(arr) {
-  // Return a random member of the array
-  return arr[randomInt(arr.length)]
-}
-
-
-animal = ['Frog', 'Camel', 'Dog'];
-let element_animal = document.getElementById('animal');
-element_animal.innerText = randomMember(animal);
-
-adejctive = ['Green', 'Scary', 'Big'];
-let element_adjective = document.getElementById('adjective');
-element_adjective.innerText = randomMember(adejctive);
-
-verb = ['jump', 'kick', 'pick'];
-let element_verb = document.getElementById('verb');
-element_verb.innerText = randomMember(verb);
-
-noun = ['girl', 'boy', 'woman'];
-let element_noun = document.getElementById('noun');
-element_noun.innerText = randomMember(noun);
+});
